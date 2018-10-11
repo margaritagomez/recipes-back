@@ -114,7 +114,7 @@ func main() {
 	r.HandleFunc("/recipes", updateRecipe).Methods("PUT")
 	r.HandleFunc("/recipes", deleteRecipe).Methods("DELETE")
 	r.HandleFunc("/recipes/{id}", getRecipe).Methods("GET")
-	if err := http.ListenAndServe(os.Getenv("PORT"), r); err != nil {
+	if err := http.ListenAndServe(":"+os.Getenv("PORT"), r); err != nil {
 		log.Fatal(err)
 	}
 }
