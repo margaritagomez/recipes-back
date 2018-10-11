@@ -8,15 +8,15 @@ import (
 	"gopkg.in/mgo.v2/bson"
 
 	"github.com/gorilla/mux"
-	. "github.com/margaritagomez/recipes-back/config"
-	. "github.com/margaritagomez/recipes-back/dao"
-	. "github.com/margaritagomez/recipes-back/models"
+	pConfig "github.com/margaritagomez/recipes-back/config"
+	pDao "github.com/margaritagomez/recipes-back/dao"
+	pModels "github.com/margaritagomez/recipes-back/models"
 )
 
-var config = Config{}
-var dao = RecipesDAO{}
+var config = pConfig.Config{}
+var dao = pDao.RecipesDAO{}
 
-// getRecipes GET list of recipes
+// getRecipes gets all recipes
 func getRecipes(w http.ResponseWriter, r *http.Request) {
 	recipes, err := dao.FindAll()
 	if err != nil {
@@ -26,7 +26,7 @@ func getRecipes(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusOK, recipes)
 }
 
-// getRecipe GET a recipe by its ID
+// getRecipe gets a recipe by ID
 func getRecipe(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	recipe, err := dao.FindByID(params["id"])
@@ -37,10 +37,10 @@ func getRecipe(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusOK, recipe)
 }
 
-// createRecipe POST a new recipe
+// createRecipe posts a new recipe
 func createRecipe(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var recipe Recipe
+	var recipe pModels.Recipe
 	if err := json.NewDecoder(r.Body).Decode(&recipe); err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
 		return
@@ -53,10 +53,10 @@ func createRecipe(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusCreated, recipe)
 }
 
-// updateRecipe PUT update an existing recipe
+// updateRecipe puts existing recipe
 func updateRecipe(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var recipe Recipe
+	var recipe pModels.Recipe
 	if err := json.NewDecoder(r.Body).Decode(&recipe); err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
 		return
@@ -68,10 +68,10 @@ func updateRecipe(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusOK, map[string]string{"result": "success"})
 }
 
-// deleteRecipe DELETE an existing recipe
+// deleteRecipe deletes existing recipe
 func deleteRecipe(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var recipe Recipe
+	var recipe pModels.Recipe
 	if err := json.NewDecoder(r.Body).Decode(&recipe); err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
 		return
@@ -112,7 +112,7 @@ func main() {
 	r.HandleFunc("/recipes", updateRecipe).Methods("PUT")
 	r.HandleFunc("/recipes", deleteRecipe).Methods("DELETE")
 	r.HandleFunc("/recipes/{id}", getRecipe).Methods("GET")
-	if err := http.ListenAndServe(":3000", r); err != nil {
+	if err := http.ListenAndServe(":5000", r); err != nil {
 		log.Fatal(err)
 	}
 }
