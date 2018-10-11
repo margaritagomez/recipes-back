@@ -108,6 +108,7 @@ func init() {
 // Define HTTP request routes
 func main() {
 	r := mux.NewRouter()
+	r.HandleFunc("/", getRecipes).Methods("GET")
 	r.HandleFunc("/recipes", getRecipes).Methods("GET")
 	r.HandleFunc("/recipes", createRecipe).Methods("POST")
 	r.HandleFunc("/recipes", updateRecipe).Methods("PUT")
