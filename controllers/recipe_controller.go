@@ -15,7 +15,7 @@ import (
 var dao = d.RecipesDAO{}
 
 // getRecipes gets all recipes
-func getRecipes(w http.ResponseWriter, r *http.Request) {
+func GetRecipes(w http.ResponseWriter, r *http.Request) {
 	recipes, err := dao.FindAll()
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
@@ -25,7 +25,7 @@ func getRecipes(w http.ResponseWriter, r *http.Request) {
 }
 
 // getRecipe gets a recipe by ID
-func getRecipe(w http.ResponseWriter, r *http.Request) {
+func GetRecipe(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	recipe, err := dao.FindByID(params["id"])
 	if err != nil {
@@ -36,7 +36,7 @@ func getRecipe(w http.ResponseWriter, r *http.Request) {
 }
 
 // createRecipe posts a new recipe
-func createRecipe(w http.ResponseWriter, r *http.Request) {
+func CreateRecipe(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	var recipe m.Recipe
 	if err := json.NewDecoder(r.Body).Decode(&recipe); err != nil {
@@ -52,7 +52,7 @@ func createRecipe(w http.ResponseWriter, r *http.Request) {
 }
 
 // updateRecipe puts existing recipe
-func updateRecipe(w http.ResponseWriter, r *http.Request) {
+func UpdateRecipe(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	var recipe m.Recipe
 	if err := json.NewDecoder(r.Body).Decode(&recipe); err != nil {
@@ -67,7 +67,7 @@ func updateRecipe(w http.ResponseWriter, r *http.Request) {
 }
 
 // deleteRecipe deletes existing recipe
-func deleteRecipe(w http.ResponseWriter, r *http.Request) {
+func DeleteRecipe(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	var recipe m.Recipe
 	if err := json.NewDecoder(r.Body).Decode(&recipe); err != nil {
