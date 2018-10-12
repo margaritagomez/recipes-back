@@ -9,12 +9,10 @@ import (
 	"gopkg.in/mgo.v2/bson"
 
 	"github.com/gorilla/mux"
-	pConfig "github.com/margaritagomez/recipes-back/config"
 	pDao "github.com/margaritagomez/recipes-back/dao"
 	pModels "github.com/margaritagomez/recipes-back/models"
 )
 
-var config = pConfig.Config{}
 var dao = pDao.RecipesDAO{}
 
 // getRecipes gets all recipes
@@ -98,8 +96,6 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 
 // Parse the configuration file 'config.toml', and establish a connection to DB
 func init() {
-	//config.Read()
-
 	dao.Server = os.Getenv("SERVER")
 	dao.Database = os.Getenv("DATABASE")
 	dao.Connect()
