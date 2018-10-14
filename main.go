@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -8,6 +9,9 @@ import (
 	"github.com/gorilla/mux"
 	c "github.com/margaritagomez/recipes-back/controllers"
 )
+
+// Port to listen
+var Port = "5000"
 
 // Define HTTP request routes
 func main() {
@@ -17,7 +21,10 @@ func main() {
 	r.HandleFunc("/recipes", c.UpdateRecipe).Methods("PUT")
 	r.HandleFunc("/recipes", c.DeleteRecipe).Methods("DELETE")
 	r.HandleFunc("/recipes/{id}", c.GetRecipe).Methods("GET")
-	if err := http.ListenAndServe(":"+os.Getenv("PORT"), r); err != nil {
+	if port := os.Getenv("PORT"); port != "" {
+		Port = port
+	}
+	if err := http.ListenAndServe(fmt.Sprintf(":%s", Port), r); err != nil {
 		log.Fatal(err)
 	}
 }

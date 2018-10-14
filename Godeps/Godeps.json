@@ -7,14 +7,14 @@
 	],
 	"Deps": [
 		{
-			"ImportPath": "github.com/BurntSushi/toml",
-			"Comment": "v0.3.1",
-			"Rev": "3012a1dbe2e4bd1391d42b32f0577cb7bbc7f005"
-		},
-		{
 			"ImportPath": "github.com/davecgh/go-spew/spew",
 			"Comment": "v1.1.1-1-gd8f796a",
 			"Rev": "d8f796af33cc11cb798c1aaeb27a4ebc5099927d"
+		},
+		{
+			"ImportPath": "github.com/golang/mock/gomock",
+			"Comment": "v1.1.1-9-g600781d",
+			"Rev": "600781dde9cca80734169b9e969d9054ccc57937"
 		},
 		{
 			"ImportPath": "github.com/gorilla/mux",
@@ -30,6 +30,10 @@
 			"ImportPath": "github.com/stretchr/testify/assert",
 			"Comment": "v1.2.2-8-g2db35c8",
 			"Rev": "2db35c88b92a1631e987089b5485a95e68bc5d3a"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "49bb7cea24b1df9410e1712aa6433dae904ff66a"
 		},
 		{
 			"ImportPath": "gopkg.in/mgo.v2",

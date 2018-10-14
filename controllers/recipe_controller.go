@@ -14,7 +14,7 @@ import (
 
 var dao = d.RecipesDAO{}
 
-// getRecipes gets all recipes
+// GetRecipes gets all recipes
 func GetRecipes(w http.ResponseWriter, r *http.Request) {
 	recipes, err := dao.FindAll()
 	if err != nil {
@@ -24,7 +24,7 @@ func GetRecipes(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusOK, recipes)
 }
 
-// getRecipe gets a recipe by ID
+// GetRecipe gets a recipe by ID
 func GetRecipe(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	recipe, err := dao.FindByID(params["id"])
@@ -35,7 +35,7 @@ func GetRecipe(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusOK, recipe)
 }
 
-// createRecipe posts a new recipe
+// CreateRecipe posts a new recipe
 func CreateRecipe(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	var recipe m.Recipe
@@ -51,7 +51,7 @@ func CreateRecipe(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusCreated, recipe)
 }
 
-// updateRecipe puts existing recipe
+// UpdateRecipe puts existing recipe
 func UpdateRecipe(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	var recipe m.Recipe
@@ -66,7 +66,7 @@ func UpdateRecipe(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusOK, map[string]string{"result": "success"})
 }
 
-// deleteRecipe deletes existing recipe
+// DeleteRecipe deletes existing recipe
 func DeleteRecipe(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	var recipe m.Recipe
@@ -93,6 +93,7 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	w.Write(response)
 }
 
+// Init initializes env variables for Mongo conn
 func init() {
 	dao.Server = os.Getenv("SERVER")
 	dao.Database = os.Getenv("DATABASE")
