@@ -16,12 +16,6 @@ var dao = d.RecipesDAO{}
 // Port to listen
 var Port = "5000"
 
-func init() {
-	dao.Server = os.Getenv("SERVER")
-	dao.Database = os.Getenv("DATABASE")
-	dao.Connect()
-}
-
 // Define HTTP request routes
 func main() {
 	r := mux.NewRouter()

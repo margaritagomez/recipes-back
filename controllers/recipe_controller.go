@@ -14,10 +14,15 @@ import (
 
 var dao = d.RecipesDAO{}
 
-// Init initializes env variables for Mongo conn
 func init() {
-	dao.Server = os.Getenv("SERVER")
-	dao.Database = os.Getenv("DATABASE")
+	dao.Server = "localhost:27017"
+	if dbHostname := os.Getenv("SERVER"); dbHostname != "" {
+		dao.Server = dbHostname
+	}
+	dao.Database = "local"
+	if dbName := os.Getenv("DATABASE"); dbName != "" {
+		dao.Database = dbName
+	}
 	dao.Connect()
 }
 

@@ -20,10 +20,8 @@ var DB *mgo.Database
 // Session is the connection to MongoDB
 var Session *mgo.Session
 
-const (
-	// COLLECTION of recipes
-	COLLECTION = "recipes"
-)
+// COLLECTION ...
+var COLLECTION = "recipes"
 
 // Connect to the DB
 func (r *RecipesDAO) Connect() {
