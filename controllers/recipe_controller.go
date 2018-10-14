@@ -14,6 +14,13 @@ import (
 
 var dao = d.RecipesDAO{}
 
+// Init initializes env variables for Mongo conn
+func init() {
+	dao.Server = os.Getenv("SERVER")
+	dao.Database = os.Getenv("DATABASE")
+	dao.Connect()
+}
+
 // GetRecipes gets all recipes
 func GetRecipes(w http.ResponseWriter, r *http.Request) {
 	recipes, err := dao.FindAll()
@@ -91,11 +98,4 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
 	w.Write(response)
-}
-
-// Init initializes env variables for Mongo conn
-func init() {
-	dao.Server = os.Getenv("SERVER")
-	dao.Database = os.Getenv("DATABASE")
-	dao.Connect()
 }

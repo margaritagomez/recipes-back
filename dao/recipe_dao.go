@@ -3,7 +3,7 @@ package dao
 import (
 	"log"
 
-	mod "github.com/margaritagomez/recipes-back/models"
+	m "github.com/margaritagomez/recipes-back/models"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -14,50 +14,54 @@ type RecipesDAO struct {
 	Database string
 }
 
-var db *mgo.Database
+// DB is the database
+var DB *mgo.Database
+
+// Session is the connection to MongoDB
+var Session *mgo.Session
 
 const (
 	// COLLECTION of recipes
 	COLLECTION = "recipes"
 )
 
-// Connect to the db
-func (m *RecipesDAO) Connect() {
-	session, err := mgo.Dial(m.Server)
+// Connect to the DB
+func (r *RecipesDAO) Connect() {
+	Session, err := mgo.Dial(r.Server)
 	if err != nil {
 		log.Fatal(err)
 	}
-	db = session.DB(m.Database)
+	DB = Session.DB(r.Database)
 }
 
 // FindAll finds all
-func (m *RecipesDAO) FindAll() ([]mod.Recipe, error) {
-	var recipes []mod.Recipe
-	err := db.C(COLLECTION).Find(bson.M{}).All(&recipes)
+func (r *RecipesDAO) FindAll() ([]m.Recipe, error) {
+	var recipes []m.Recipe
+	err := DB.C(COLLECTION).Find(bson.M{}).All(&recipes)
 	return recipes, err
 }
 
 // FindByID finds by id
-func (m *RecipesDAO) FindByID(id string) (mod.Recipe, error) {
-	var recipe mod.Recipe
-	err := db.C(COLLECTION).FindId(bson.ObjectIdHex(id)).One(&recipe)
+func (r *RecipesDAO) FindByID(id string) (m.Recipe, error) {
+	var recipe m.Recipe
+	err := DB.C(COLLECTION).FindId(bson.ObjectIdHex(id)).One(&recipe)
 	return recipe, err
 }
 
 // Insert inserts
-func (m *RecipesDAO) Insert(recipe mod.Recipe) error {
-	err := db.C(COLLECTION).Insert(&recipe)
+func (r *RecipesDAO) Insert(recipe m.Recipe) error {
+	err := DB.C(COLLECTION).Insert(&recipe)
 	return err
 }
 
 // Delete deletes
-func (m *RecipesDAO) Delete(recipe mod.Recipe) error {
-	err := db.C(COLLECTION).Remove(&recipe)
+func (r *RecipesDAO) Delete(recipe m.Recipe) error {
+	err := DB.C(COLLECTION).Remove(&recipe)
 	return err
 }
 
 // Update updates
-func (m *RecipesDAO) Update(recipe mod.Recipe) error {
-	err := db.C(COLLECTION).UpdateId(recipe.ID, &recipe)
+func (r *RecipesDAO) Update(recipe m.Recipe) error {
+	err := DB.C(COLLECTION).UpdateId(recipe.ID, &recipe)
 	return err
 }

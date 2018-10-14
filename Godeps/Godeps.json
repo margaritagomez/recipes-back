@@ -12,11 +12,6 @@
 			"Rev": "d8f796af33cc11cb798c1aaeb27a4ebc5099927d"
 		},
 		{
-			"ImportPath": "github.com/golang/mock/gomock",
-			"Comment": "v1.1.1-9-g600781d",
-			"Rev": "600781dde9cca80734169b9e969d9054ccc57937"
-		},
-		{
 			"ImportPath": "github.com/gorilla/mux",
 			"Comment": "v1.6.2-9-g9e1f595",
 			"Rev": "9e1f5955c0d22b55d9e20d6faa28589f83b2faca"
@@ -32,16 +27,17 @@
 			"Rev": "2db35c88b92a1631e987089b5485a95e68bc5d3a"
 		},
 		{
-			"ImportPath": "golang.org/x/net/context",
-			"Rev": "49bb7cea24b1df9410e1712aa6433dae904ff66a"
-		},
-		{
 			"ImportPath": "gopkg.in/mgo.v2",
 			"Comment": "r2016.08.01-7-g9856a29",
 			"Rev": "9856a29383ce1c59f308dd1cf0363a79b5bef6b5"
 		},
 		{
 			"ImportPath": "gopkg.in/mgo.v2/bson",
+			"Comment": "r2016.08.01-7-g9856a29",
+			"Rev": "9856a29383ce1c59f308dd1cf0363a79b5bef6b5"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2/dbtest",
 			"Comment": "r2016.08.01-7-g9856a29",
 			"Rev": "9856a29383ce1c59f308dd1cf0363a79b5bef6b5"
 		},
@@ -59,6 +55,10 @@
 			"ImportPath": "gopkg.in/mgo.v2/internal/scram",
 			"Comment": "r2016.08.01-7-g9856a29",
 			"Rev": "9856a29383ce1c59f308dd1cf0363a79b5bef6b5"
+		},
+		{
+			"ImportPath": "gopkg.in/tomb.v2",
+			"Rev": "d5d1b5820637886def9eef33e03a27a9f166942c"
 		}
 	]
 }

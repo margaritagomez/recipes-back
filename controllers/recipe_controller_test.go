@@ -43,6 +43,7 @@ func TestCreateRecipe(t *testing.T) {
 	response := httptest.NewRecorder()
 	Router().ServeHTTP(response, request)
 	assert.Equal(t, 201, response.Code, "OK response is expected")
+
 	newRecipe := new(m.Recipe)
 	error := json.NewDecoder(response.Body).Decode(newRecipe)
 	fmt.Printf(error.Error())
