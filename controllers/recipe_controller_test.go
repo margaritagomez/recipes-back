@@ -31,25 +31,25 @@ const updateID = "5bc2ef0423848dcc853408fa"
 
 var existingRecipe = &m.Recipe{
 	ID:    bson.ObjectIdHex(existingID),
-	Title: "Pandebonos",
+	Title: "TestRecipe",
 	Ingredients: []m.Ingredient{
 		{
-			Name:     "Huevos",
+			Name:     "TestIngredient1",
 			Quantity: 3,
-			Unit:     "unidades",
+			Unit:     "TestUnit1",
 		},
 		{
-			Name:     "Leche",
+			Name:     "TestIngredient2",
 			Quantity: 3,
-			Unit:     "litros",
+			Unit:     "TestUnit2",
 		},
 		{
-			Name:     "Harina de yuca",
+			Name:     "TestIngredient3",
 			Quantity: 3,
-			Unit:     "libras",
+			Unit:     "TestUnit3",
 		},
 	},
-	Instructions: "Se mezcla todo, se mete al horno y se come. ñomi",
+	Instructions: "Test Instructions test instructions test instructions",
 	Image:        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Pandebono.jpg/250px-Pandebono.jpg",
 }
 
