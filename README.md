@@ -1,6 +1,6 @@
 # Golang RESTful API for recipes
 
-This project has been deployed in heroku [here](https://evening-peak-29761.herokuapp.com/).
+This project has been deployed in heroku [here](https://evening-peak-29761.herokuapp.com/recipes).
 
 To call the back-end services you must call:
 
