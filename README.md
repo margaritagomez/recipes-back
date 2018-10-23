@@ -3,9 +3,9 @@
 This project has been deployed in heroku [here](https://evening-peak-29761.herokuapp.com/recipes).
 
 ## Technologies used
- * This project is developed in Go. 
- * Gorilla Mux is used for routing and dispatching HTTP requests.
- * For persistence, a MongoDB no-SQL database is used. 
+ * This project was developed in Go. 
+ * Gorilla Mux was used for routing and dispatching HTTP requests.
+ * For persistence, a MongoDB is used. 
  * Godeps is used to vendor the app's dependencies into its source repository, so it could be deployed.
 
 ## Structure
